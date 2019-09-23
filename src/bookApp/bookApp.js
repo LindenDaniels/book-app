@@ -1,6 +1,6 @@
-import React, { Component } from React;
+import React, { Component } from 'react';
 import './bookApp.css';
-import bookList from '../bookList/Booklist';
+import bookList from '../bookList/bookList';
 
 class BookApp extends Component {
     render() {

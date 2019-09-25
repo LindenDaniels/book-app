@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './bookApp.css';
-import bookList from '../bookList/bookList';
+import BookList from './bookList/bookList';
+import SearchForm from './searchForm/searchForm';
 
 class BookApp extends Component {
     render() {
         return (
-            <div className = "BookApp">
-                
+            <div className = "bookApp">
                 <h1>Google Book Search</h1>
-                <bookSearch />
-                <bookList singlebook = {this.props.singlebook} />
+                <SearchForm />
+                <BookList showForm={this.props.showForm}/>
             </div>
         );
     }

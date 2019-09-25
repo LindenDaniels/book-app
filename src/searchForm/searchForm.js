@@ -5,10 +5,16 @@ class SearchForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            printType: 'all',
-            bookType: 'no filter'
+            q: '',
+            filter: '',
+            printType: 'all'
+             
         };
     }
+    setFilter(filter) {
+        this.setState({
+          filter: this.state.filter
+        });
     render() {
         return (
             <div className="searchform">
@@ -19,19 +25,21 @@ class SearchForm extends Component {
                       name="search"
                       id="search"
                       placeholder="Search" />
-                      <select value={this.state.printType}>
-                          <option value="all">All</option>
-                          <option value="previewable">Previewable Only</option>
-                          <option value="fulltext">Full Text Only</option>
-                      </select>
-                      <select value={this.state.bookType}>
+                      <select value={this.state.filter}>
+                          <option value="partial">Partial</option>
+                          <option value="fullt">Full</option>
                           <option value="nofilter">No Filter</option>
                           <option value="ebooks">Ebooks</option>
-                          <option value="free-ebooks">Free eBooks</option>
+                          <option value="free-ebooks">Free EBooks</option>
                           <option value="paid-ebooks">Paid Ebooks</option>  
                       </select>
+                      <select value={this.state.printType}>
+                          <option value="all">All</option>
+                          <option value="books">Books</option>
+                          <option value="magazines">Magazines</option>
+                      </select>
                       <div className="searchform__buttons">
-                      <button type="submit">Search</button>
+                      <button type="submit" onClick={e => this.props.showForm(true)}>Search</button>
                       </div>
                 </form>
             </div>

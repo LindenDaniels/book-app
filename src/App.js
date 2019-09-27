@@ -9,9 +9,9 @@ class App extends Component {
     super(props);
     this.state = {
       books: [],
+      filters: [],
       showBookList: false,
-      filter: '',
-      q: ''
+      selected: null
     }; 
   }
 
@@ -24,7 +24,8 @@ class App extends Component {
       headers: {
         "Authorization": "Bearer",
         "Content-Type": "application/json",
-        "Filter": "full"
+        "Filter": "full",
+        "q": 'babe'
       }
     };
     fetch(url, options)
@@ -35,25 +36,25 @@ class App extends Component {
       return res;
     })
     .then(res => res.json())
-    .then(data => ({
-      books: data,
-      error: null
-    }))
+    .then(data => {
+      const books = Object.keys(data).map(key => data[key.item[0]]);
+      this.setState({
+        books,
+        error: null
+      })
+    })
     .catch(err => {
       this.setState({
         error: err.message
       });
     });
   }
-  changeFilter(filter) {
-
+  setFilter(filter) {
+    this.setState({
+      filter
+    });
   }
-
- 
-
-    
-
-  }
+  
   setShowBookList(show) {
     this.setState({
       showBookList: show
@@ -70,7 +71,8 @@ class App extends Component {
     const results = this.state.showBookList 
           ? <SearchForm /> 
           : <React.Fragment>
-            <SearchForm /> 
+            <SearchForm
+            filter={this.state.selected} /> 
             <BookList
               books={this.state.books} showForm={show => this.setShowAddForm(show)}/>
             </React.Fragment>;

@@ -24,8 +24,8 @@ class App extends Component {
       headers: {
         "Authorization": "Bearer",
         "Content-Type": "application/json",
-        "Filter": "full",
-        "q": 'babe'
+        
+        
       }
     };
     fetch(url, options)
@@ -72,9 +72,10 @@ class App extends Component {
           ? <SearchForm /> 
           : <React.Fragment>
             <SearchForm
-            filter={this.state.selected} /> 
+            filter={this.state.selected}
+            showForm={show => this.setShowBookList(show)} /> 
             <BookList
-              books={this.state.books} showForm={show => this.setShowAddForm(show)}/>
+              books={this.state.books} />
             </React.Fragment>;
   
             return (

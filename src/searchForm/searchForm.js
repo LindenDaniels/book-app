@@ -5,7 +5,7 @@ class SearchForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            q: '',
+            url: '',
             filter: '',
             printType: 'all'
              
@@ -21,7 +21,7 @@ class SearchForm extends Component {
         e.preventDefault()
         const { title, url, description } = e.target
         const book = {
-            title: items.volumeInfo.title.value,
+            title: title.value,
             url: url.value,
             description: description.value
         }
@@ -30,7 +30,7 @@ class SearchForm extends Component {
     const options = {
       method: 'GET',
       headers: {
-        "Authorization": "Bearer",
+        "Authorization": "Bearer AIzaSyCNeriCaVG9CTrfpo-Q5zzdU_ih1jh2oz8",
         "Content-Type": "application/json",
         
         
@@ -48,7 +48,7 @@ class SearchForm extends Component {
         return res.json()
       })
       .then(data => {
-        items.volumeInfo.title.value = ''
+        this.items.volumeInfo.title.value = ''
         url.value = ''
         description.value = ''
         
